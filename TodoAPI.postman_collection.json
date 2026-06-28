@@ -1,0 +1,31 @@
+{
+  "name": "GET Todo - Not Found",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "http://localhost:3000/todos/999",
+      "protocol": "http",
+      "host": ["localhost"],
+      "port": "3000",
+      "path": ["todos", "999"]
+    }
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test(\"Status code is 404\", function () {",
+          "    pm.response.to.have.status(404);",
+          "});",
+          "pm.test(\"Response contains error message\", function () {",
+          "    const jsonData = pm.response.json();",
+          "    pm.expect(jsonData).to.have.property('error');",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}
